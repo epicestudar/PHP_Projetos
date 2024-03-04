@@ -7,7 +7,7 @@ header("Location: index.php?msgErro=Você precisa se autenticar no sistema.");
 die();
 }
 ?>
-<html lang="pt-br”>
+<html lang="pt-br">
 <head>
 <meta charset="utf-8">
 <title>Cadastrar Novo Anúncio</title>

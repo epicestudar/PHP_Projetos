@@ -4,9 +4,9 @@
 // usuario
 // senha
 $endereco = 'localhost';
-$banco = 'joaoDB';
+$banco = 'postgres';
 $adm = 'postgres';
-$senha = 'postgres';
+$senha = 'dulcidia10';
 
 try {
     // sgbd:host;port;dbname
