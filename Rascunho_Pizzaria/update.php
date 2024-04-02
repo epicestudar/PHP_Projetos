@@ -20,33 +20,33 @@ if (isset($_GET['id_contato'])) {
     // Obter o contato da tabela contatoss
     $stmt = $pdo->prepare('SELECT * FROM contatos WHERE id_contato = ?');
     $stmt->execute([$_GET['id_contato']]);
-    $contatos = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$contatos) {
-        exit('Pedido Não Localizado!');
+    $contato = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$contato) {
+        exit('Contato Não Localizado!');
     }
 } else {
-    exit('Nenhum Pedido Especificada!');
+    exit('Nenhum Contato Especificado!');
 }
 ?>
 
 
-<?=template_header('Atualizar/Alterar Pedidos')?>
+<?=template_header('Atualizar/Alterar Contatos')?>
 
 <div class="content update">
-	<h2>Atualizar Contato ---- <?=$contatos['id_contato']?></h2>
-    <form action="update.php?id_contato=<?=$contatos['id_contato']?>" method="post">
+    <h2>Atualizar Contato ---- <?=$contato['id_contato']?></h2>
+    <form action="update.php?id_contato=<?=$contato['id_contato']?>" method="post">
         <label for="id_contato">ID</label>
         <label for="nome">Nome</label>
-        <input type="text" name="id" placeholder="" value="<?=$contatos['id_contato']?>" id="id_contato">
-        <input type="text" name="nome" placeholder="Seu Nome" value="<?=$contatos['nome']?>" id="nome">
+        <input type="text" name="id_contato" placeholder="" value="<?=$contato['id_contato']?>" id="id_contato">
+        <input type="text" name="nome" placeholder="Seu Nome" value="<?=$contato['nome']?>" id="nome">
         <label for="email">Email</label>
         <label for="cel">Celular</label>
-        <input type="text" name="email" placeholder="seuemail@seuprovedor.com.br" value="<?=$contatos['email']?>" id="email">
-        <input type="text" name="cel" placeholder="(XX) X.XXXX-XXXX" value="<?=$contatos['cel']?>" id="cel">
+        <input type="text" name="email" placeholder="seuemail@seuprovedor.com.br" value="<?=$contato['email']?>" id="email">
+        <input type="text" name="cel" placeholder="(XX) X.XXXX-XXXX" value="<?=$contato['cel']?>" id="cel">
         <label for="pizza">Pizza</label>
         <label for="created">Criação</label>
-        <input type="text" name="pizza" placeholder="Pizza" value="<?=$contatos['pizza']?>" id="pizza">
-        <input type="datetime-local" name="cadastro" value="<?=date('Y-m-d\TH:i', strtotime($contatos['cadastro']))?>" id="cadastro">
+        <input type="text" name="pizza" placeholder="Pizza" value="<?=$contato['pizza']?>" id="pizza">
+        <input type="datetime-local" name="cadastro" value="<?=date('Y-m-d\TH:i', strtotime($contato['cadastro']))?>" id="cadastro">
         <input type="submit" value="Update">
     </form>
     <?php if ($msg): ?>

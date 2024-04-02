@@ -1,4 +1,3 @@
-
 <?php
 include 'functions.php';
 $pdo = pdo_connect_pgsql();
@@ -17,7 +16,7 @@ if (isset($_GET['id_contato'])) {
         if ($_GET['confirm'] == 'yes') {
             // O usuário clicou no botão "Sim", deleta o registro
             $stmt = $pdo->prepare('DELETE FROM contatos WHERE id_contato = ?');
-            $stmt->execute([$_GET['id']]);
+            $stmt->execute([$_GET['id_contato']]);
             $msg = 'Contato Apagado com Sucesso!';
         } else {
             // O usuário clicou no botão "Não", redireciona de volta para a página de leitura
@@ -34,14 +33,14 @@ if (isset($_GET['id_contato'])) {
 <?=template_header('Apagar Usuários')?>
 
 <div class="content delete">
-	<h2>Apagar Contato ----  <?=$contact['nome']?></h2>
+    <h2>Apagar Contato ----  <?=$contact['nome']?></h2>
     <?php if ($msg): ?>
     <p><?=$msg?></p>
     <?php else: ?>
-	<p>Você tem certeza que deseja apagar o contato #<?=$contact['id_contato']?>?</p>
+    <p>Você tem certeza que deseja apagar o contato #<?=$contact['id_contato']?>?</p>
     <div class="yesno">
-        <a href="delete.php?id=<?=$contact['id_contato']?>&confirm=yes">Sim</a>
-        <a href="delete.php?id=<?=$contact['id_contato']?>&confirm=no">Não</a>
+        <a href="delete.php?id_contato=<?=$contact['id_contato']?>&confirm=yes">Sim</a>
+        <a href="delete.php?id_contato=<?=$contact['id_contato']?>&confirm=no">Não</a>
     </div>
     <?php endif; ?>
 </div>
