@@ -36,6 +36,7 @@ function template_header($title)
     		<h1>Pedidos - Pizzaria Dom Bruno</h1>
             <a href="index.php"><i class="fas fa-home"></i>Inicio</a>
     		<a href="read.php"><i class="fas fa-shopping-basket"></i>Pedidos</a>
+            <a href="pesquisar_pizza.html"><i class="fas fa-shopping-basket"></i>Buscar Pizza</a>
     	</div>
     </nav>
 EOT;

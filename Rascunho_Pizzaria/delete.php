@@ -1,36 +1,4 @@
 
-04 - PROJETO PIZZARIA (CRUD)
-Bruno A Moraes
-•
-13:44 (editado: 13:58)
-100 pontos
-Data de entrega: 17:00
-Realizar a construção de um CRUD com PHP com PDO em Postgres
-
-index.php
-PHP
-
-functions.php
-PHP
-
-read.php
-PHP
-
-create.php
-PHP
-
-delete.php
-PHP
-
-style.css
-Folha de estilo
-
-update.php
-PHP
-Comentários da turma
-Seus trabalhos
-Atribuído
-Comentários particulares
 <?php
 include 'functions.php';
 $pdo = pdo_connect_pgsql();
