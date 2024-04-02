@@ -1,0 +1,81 @@
+
+04 - PROJETO PIZZARIA (CRUD)
+Bruno A Moraes
+•
+13:44 (editado: 13:58)
+100 pontos
+Data de entrega: 17:00
+Realizar a construção de um CRUD com PHP com PDO em Postgres
+
+index.php
+PHP
+
+functions.php
+PHP
+
+read.php
+PHP
+
+create.php
+PHP
+
+delete.php
+PHP
+
+style.css
+Folha de estilo
+
+update.php
+PHP
+Comentários da turma
+Seus trabalhos
+Atribuído
+Comentários particulares
+<?php
+include 'functions.php';
+$pdo = pdo_connect_pgsql();
+$msg = '';
+// Verifica se o ID do contato existe
+if (isset($_GET['id_contato'])) {
+    // Seleciona o registro que será deletado
+    $stmt = $pdo->prepare('SELECT * FROM contatos WHERE id_contato = ?');
+    $stmt->execute([$_GET['id_contato']]);
+    $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$contact) {
+        exit('Contato Não Localizado!');
+    }
+    // Certifique-se de que o usuário confirma antes da exclusão
+    if (isset($_GET['confirm'])) {
+        if ($_GET['confirm'] == 'yes') {
+            // O usuário clicou no botão "Sim", deleta o registro
+            $stmt = $pdo->prepare('DELETE FROM contatos WHERE id_contato = ?');
+            $stmt->execute([$_GET['id']]);
+            $msg = 'Contato Apagado com Sucesso!';
+        } else {
+            // O usuário clicou no botão "Não", redireciona de volta para a página de leitura
+            header('Location: read.php');
+            exit;
+        }
+    }
+} else {
+    exit('Nenhum ID especificado!');
+}
+?>
+
+
+<?=template_header('Apagar Usuários')?>
+
+<div class="content delete">
+	<h2>Apagar Contato ----  <?=$contact['nome']?></h2>
+    <?php if ($msg): ?>
+    <p><?=$msg?></p>
+    <?php else: ?>
+	<p>Você tem certeza que deseja apagar o contato #<?=$contact['id_contato']?>?</p>
+    <div class="yesno">
+        <a href="delete.php?id=<?=$contact['id_contato']?>&confirm=yes">Sim</a>
+        <a href="delete.php?id=<?=$contact['id_contato']?>&confirm=no">Não</a>
+    </div>
+    <?php endif; ?>
+</div>
+
+<?=template_footer()?>
